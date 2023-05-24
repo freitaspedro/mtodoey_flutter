@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
+
 class AddTaskScreen extends StatelessWidget {
 
   final Function addTaskCallback;
@@ -25,13 +27,8 @@ class AddTaskScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text(
-              'Add Task',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 30.0,
-                color: Colors.purple,
-              ),
+            const SizedBox(
+              height: 20.0,
             ),
             TextField(
               autofocus: true,
@@ -39,6 +36,9 @@ class AddTaskScreen extends StatelessWidget {
               onChanged: (newValue) {
                 newTaskTitle = newValue;
               },
+              decoration: kTextFieldDecoration.copyWith(
+                  hintText: 'Type your task here'
+              ),
             ),
             const SizedBox(
               height: 20.0,
