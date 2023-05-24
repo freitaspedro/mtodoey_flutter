@@ -11,11 +11,7 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(name: 'Buy milk'),
-    Task(name: 'Buy eggs'),
-    Task(name: 'Buy bread'),
-  ];
+  List<Task> tasks = [];
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +28,17 @@ class _TasksScreenState extends State<TasksScreen> {
                   padding: EdgeInsets.only(
                       bottom: MediaQuery.of(context).viewInsets.bottom
                   ),
-                  child: const AddTaskScreen(),
+                  child: AddTaskScreen(
+                    addTaskCallback:
+                      (newValue) {
+                        setState(() {
+                          if (newValue != null) {
+                            tasks.add(Task(name: newValue, isDone: false));
+                          }
+                        });
+                        Navigator.pop(context);
+                      },
+                  ),
                 ),
               ),
           );
@@ -47,8 +53,8 @@ class _TasksScreenState extends State<TasksScreen> {
               const EdgeInsets.only(left: 30.0, top: 60.0, right: 30.0, bottom: 30.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                CircleAvatar(
+              children: [
+                const CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 30.0,
                   child: Icon(
@@ -57,10 +63,10 @@ class _TasksScreenState extends State<TasksScreen> {
                     color: Colors.purple,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                     height: 30.0
                 ),
-                Text(
+                const Text(
                   'Todoey',
                   style: TextStyle(
                     color: Colors.white,
@@ -69,8 +75,8 @@ class _TasksScreenState extends State<TasksScreen> {
                   ),
                 ),
                 Text(
-                  '12 tasks',
-                  style: TextStyle(
+                  '${tasks.length} tasks',
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18.0,
                   ),
