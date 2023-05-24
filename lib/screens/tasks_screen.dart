@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mtodoey_flutter/screens/add_task_screen.dart';
 import 'package:mtodoey_flutter/widgets/tasks_list.dart';
 import 'package:mtodoey_flutter/models/task.dart';
+import 'package:mtodoey_flutter/constants.dart';
 
 class TasksScreen extends StatefulWidget {
   const TasksScreen({super.key});
@@ -87,13 +88,7 @@ class _TasksScreenState extends State<TasksScreen> {
           Expanded(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20.0),
-                    topRight: Radius.circular(20.0),
-                  )
-              ),
+              decoration: kBoxDecoration,
               child: TasksList(tasks: tasks),
             ),
           ),

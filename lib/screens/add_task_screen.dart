@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../constants.dart';
+import 'package:mtodoey_flutter/constants.dart';
 
 class AddTaskScreen extends StatelessWidget {
 
@@ -17,13 +16,7 @@ class AddTaskScreen extends StatelessWidget {
       color: const Color(0xff757575),
       child: Container(
         padding: const EdgeInsets.all(20.0),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20.0),
-            topRight: Radius.circular(20.0),
-          ),
-        ),
+        decoration: kBoxDecoration,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
