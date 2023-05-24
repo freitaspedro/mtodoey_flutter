@@ -12,7 +12,18 @@ class TasksScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.purple,
         onPressed: () {
-          showModalBottomSheet(context: context, builder: (context) => const AddTaskScreen());
+          showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              builder: (context) => SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom
+                  ),
+                  child: const AddTaskScreen(),
+                ),
+              ),
+          );
         },
         child: const Icon(Icons.add),
       ),
