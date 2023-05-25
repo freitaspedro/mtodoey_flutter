@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:mtodoey_flutter/models/task_data.dart';
 import 'package:mtodoey_flutter/screens/add_task_screen.dart';
 import 'package:mtodoey_flutter/widgets/tasks_list.dart';
-import 'package:mtodoey_flutter/models/task.dart';
 import 'package:mtodoey_flutter/constants.dart';
+import 'package:provider/provider.dart';
 
-class TasksScreen extends StatefulWidget {
+class TasksScreen extends StatelessWidget {
   const TasksScreen({super.key});
-
-  @override
-  State<TasksScreen> createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [];
 
   @override
   Widget build(BuildContext context) {
@@ -29,17 +23,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   padding: EdgeInsets.only(
                       bottom: MediaQuery.of(context).viewInsets.bottom
                   ),
-                  child: AddTaskScreen(
-                    addTaskCallback:
-                      (newValue) {
-                        setState(() {
-                          if (newValue != null) {
-                            tasks.add(Task(name: newValue, isDone: false));
-                          }
-                        });
-                        Navigator.pop(context);
-                      },
-                  ),
+                  child: AddTaskScreen(),
                 ),
               ),
           );
@@ -76,7 +60,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   ),
                 ),
                 Text(
-                  '${tasks.length} tasks',
+                  '${Provider.of<TaskData>(context).taskCount} tasks',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18.0,
@@ -89,7 +73,7 @@ class _TasksScreenState extends State<TasksScreen> {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               decoration: kBoxDecoration,
-              child: TasksList(tasks: tasks),
+              child: const TasksList(),
             ),
           ),
         ],

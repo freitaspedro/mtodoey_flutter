@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mtodoey_flutter/constants.dart';
+import 'package:mtodoey_flutter/models/task.dart';
+import 'package:mtodoey_flutter/models/task_data.dart';
+import 'package:provider/provider.dart';
 
 class AddTaskScreen extends StatelessWidget {
-
-  final Function addTaskCallback;
-
-  const AddTaskScreen({super.key, required this.addTaskCallback});
+  const AddTaskScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,8 @@ class AddTaskScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                addTaskCallback(newTaskTitle);
+                context.read<TaskData>().addTask(newTaskTitle);
+                Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.purple
